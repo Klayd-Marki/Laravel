@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-    <link rel="stylesheet" href="/my.css">
-    <title>Blog posts</title>
-</head>
-<body>
-    <?php foreach ($posts as $post) : ?>
+<x-layout>
+    @foreach($posts as $post)
     <article>
-        <?= $post ?>
+        <h1>
+            <a href="/posts/{{ $post->slug }}">
+                {{ $post->title }}
+            </a>
+        </h1>
+        <div>
+            {{ $post->excerpt }}
+        </div>
     </article>
-    <?php endforeach; ?>
-</body>
-</html>
+    @endforeach
+</x-layout>

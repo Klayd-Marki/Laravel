@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 
@@ -21,14 +22,10 @@ Route::get('/', function () {
 });
 Route::get('/posts/{post}', function ($slug) {
     return view('post', [
-        "post"=>Post::find($slug)
+        "post"=>Post::findOrFail($slug)
     ]);
 })->where("post","[A-z_\-]+");
 
-Route::get('/hello', function ()
-{
-    return "Hello World";
-});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
