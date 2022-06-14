@@ -9,11 +9,12 @@
             />
         </button>
     </x-slot>
-    <x-post-dropdown-item href="/" :active="request()->routeIs('home')">All</x-post-dropdown-item>
+    
+    <x-post-dropdown-item href="/" :active="!(request()->has('category'))">All</x-post-dropdown-item>
     @foreach ($categories as $category)
-    <x-post-dropdown-item
-    href="/?category={{ $category->slug }}&{{ http_build_query(request()->except('category'))}}"
-            :active="request()->is('categories/'.$category->slug)"
+        <x-post-dropdown-item
+            href="/?category={{ $category->slug }}&{{ http_build_query(request()->except('category'))}}"
+            :active="request()->query('category')==$category->slug"
         >
             {{ ucwords($category->name) }}
         </x-post-dropdown-item>
