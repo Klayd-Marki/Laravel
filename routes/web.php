@@ -1,9 +1,10 @@
 <?php
 
+use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
-use App\Models\Category;
-use App\Models\Post;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,8 +30,7 @@ Route::get('/posts/{post:slug}', [PostController::class, "show"])->name("post");
 
         Route::get('author/{author:username}', function (User $author) {
             return view('posts', [
-                "posts"=> $author->posts->load(["category","author"]),
-                "categories"=>Category::all()
+                "posts"=> $author->posts->load(["category","author"])
             ]);
 
 });
