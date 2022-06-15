@@ -35,3 +35,6 @@ Route::get('/posts/{post:slug}', [PostController::class, "show"])->name("post");
 
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');

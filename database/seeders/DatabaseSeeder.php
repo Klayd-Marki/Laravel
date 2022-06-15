@@ -17,48 +17,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $user = User::factory()->create([
+            'name' => 'John Doe'
+        ]);
 
-        User::truncate();
-        Post::truncate();
-        Category::truncate();
-
-
-         $user = User::factory()->create();
-
-         $personal = Category::create([
-             'name' =>'Personal',
-             'slug' => 'personal'
+         Post::factory(5)->create([
+             'user_id' => $user->id
          ]);
-         $family =Category::create([
-            'name' =>'Family',
-            'slug' => 'family'
-        ]);
-        $work =Category::create([
-            'name' =>'Work',
-            'slug' => 'work'
-        ]);
-
-
-        Post::create([
-            'user_id' => $user->id,
-            'category_id' => $family->id,
-            'title' => 'My Family Post',
-            'slug' => 'my-first-post',
-            'excerpt' => '<p>Loream ipsum dolat sitr amet.</p>',
-            'body' =>'<p>Loream ipsum dolat sitr ametLoream ipsum dolat sitr ametLoream ipsum dolat sitr ametLoream ipsum dolat sitr
-             ametLoream ipsum dolat sitr ametLoream ipsum dolat sitr ametLoream ipsum dolat sitr ametLoream ipsum dolat sitr amet</p>'
-        ]);
-
-        Post::create([
-            'user_id' => $user->id,
-            'category_id' => $work->id,
-            'title' => 'My Work Post',
-            'slug' => 'my-work-post',
-            'excerpt' => '<p>Loream ipsum dolat sitr amet.</p>',
-            'body' =>'<p>Loream ipsum dolat sitr ametLoream ipsum dolat sitr ametLoream ipsum dolat sitr ametLoream ipsum dolat sitr
-            ametLoream ipsum dolat sitr ametLoream ipsum dolat sitr ametLoream ipsum dolat sitr ametLoream ipsum dolat sitr amet</p>'
-        ]);
-
-
     }
+
+
+
 }
